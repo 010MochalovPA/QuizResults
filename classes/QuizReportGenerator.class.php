@@ -57,6 +57,12 @@ class QuizReportGenerator
         if ($this->quizResults->quizType == QuizType::GRADED)
         {
             $header .= 'Result: ' . $this->quizResults->formatStatus() . PHP_EOL;
+            
+            if ($this->quizResults->grade)
+            {
+                $header .= 'Grade: ' . $this->quizResults->grade . PHP_EOL;
+            }
+
             $header .= 'User Score: ' . $this->quizResults->formatUserScore() . PHP_EOL;
             $header .= 'Passing Score: ' . $this->quizResults->formatPassingScore() . PHP_EOL;
         }
@@ -69,11 +75,6 @@ class QuizReportGenerator
         if ($this->quizResults->detailResult->finishedAt)
         {
             $header .= "Quiz Finished At: " . $this->quizResults->detailResult->finishedAt . PHP_EOL;
-        }
-
-        if ($this->quizResults->grade)
-        {
-            $header .= 'Grade: ' . $this->quizResults->grade . PHP_EOL;
         }
 
         return $header . PHP_EOL;
